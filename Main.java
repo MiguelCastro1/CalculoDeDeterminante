@@ -10,7 +10,7 @@ class Main{
         Scanner ler = new Scanner(System.in);
 	    Matriz Mat;
         
-        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=CÁLCULO DETERMINANTE=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=CALCULO DETERMINANTE=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 
         System.out.println("                             -MENU DE COMANDO-                ");
         System.out.println();        
@@ -25,7 +25,7 @@ class Main{
             if((resposta1 ==1)  || (resposta1 == 2)){
                 saida = false;       
             }else{           
-            System.out.println("COMANDO INVÁLIDO");
+            System.out.println("COMANDO INVALIDO");
             System.out.println("Por favor,Digite novamente");
             }
         }while(saida);
@@ -46,7 +46,7 @@ class Main{
         System.out.println();
         System.out.println("PASSO 2:PREENCHER A  MATRIZ");
         System.out.println();
-        System.out.println("->DIGITE 1:PREENCHER A MATRIZ COM UM ÚNICO VALOR");
+        System.out.println("->DIGITE 1:PREENCHER A MATRIZ COM UM UNICO VALOR");
         System.out.println("->DIGITE 2:PREENCHER A MATRIZ COM VALORES ALEATORIOS(0 A 20)");
         System.out.println("->DIGITE 3:PREENCHER A MATRIZ COM 0 ATE UM NUMERO INFORMADO");
         System.out.println("->DIGITE ,4:PREENCHER A MATRIZ MANUALMENTE");
@@ -57,7 +57,7 @@ class Main{
             if((resposta2 ==1)  || (resposta2 == 2) || (resposta2 == 3) || (resposta2 == 4)){
                 saida = false;       
             }else{           
-                System.out.println("   COMANDO INVÁLIDO");
+                System.out.println("   COMANDO INVALIDO");
                 System.out.println("  Por favor,Digite novamente"); 
             }
         }while(saida);
@@ -86,10 +86,10 @@ class Main{
 	    System.out.println();
         System.out.println("PASSO 3:CALCULO DA DETERMINANTE DA  MATRIZ");
         System.out.println();
-        System.out.println("->DIGITE 1:CALCULAR COM ALGORITIMO BÁSICO");
-        System.out.println("->DIGITE 2:CALCULAR COM ALGORITIMO COM OTIMIZAÇÃO BÁSICA");
-        System.out.println("->DIGITE 3:CALCULAR COM ALGORITIMO COM OTIMIZAÇÃO EXTRA(TEOREMA DE CHIÓ)");
-        System.out.println("->DIGITE 4:CALCULAR COM OS TRES ALGORITIMOS EM SEQUÊNCIA");
+        System.out.println("->DIGITE 1:CALCULAR COM ALGORITIMO BASICO");
+        System.out.println("->DIGITE 2:CALCULAR COM ALGORITIMO COM OTIMIZACAO BASICA");
+        System.out.println("->DIGITE 3:CALCULAR COM ALGORITIMO COM OTIMIZACAO EXTRA(TEOREMA DE CHIÓ)");
+        System.out.println("->DIGITE 4:CALCULAR COM OS TRES ALGORITIMOS EM SEQUENCIA");
         saida = true; 
         do{
             System.out.print("  ");
@@ -97,7 +97,7 @@ class Main{
             if((resposta2 ==1)  || (resposta2 == 2) || (resposta2 == 3) || (resposta2 == 4)){
                 saida = false;       
             }else{           
-                System.out.println("   COMANDO INVÁLIDO");
+                System.out.println("   COMANDO INVALIDO");
                 System.out.println("  Por favor,Digite novamente"); 
             }
         }while(saida);
@@ -110,12 +110,12 @@ class Main{
             Mat1.iniciaPelaMatriz(Mat);            
             
             System.out.println("==============================================================================");  
-            System.out.println("                         ALGORITMO BÁSICO                                    ");
+            System.out.println("                         ALGORITMO BASICO                                    ");
             System.out.println("==============================================================================");  
             System.out.println("Calculando Determinante...");
             System.out.println();
             if((Mat.retorneOrdem() == 13) || (Mat.retorneOrdem() == 15)){
-                System.out.println("|LEMBRE-SE:A paciência é a arte de esperar|");
+                System.out.println("|LEMBRE-SE:A paciencia eh a arte de esperar|");
                 System.out.println();
              }
         	    
@@ -124,7 +124,7 @@ class Main{
 	        System.out.println(Mat1.DetVersaoFusca());
 	        endTime = System.nanoTime();
 	        Tempo = endTime - startTime;
-            System.out.print("TEMPO DE EXECUÇÃO DO ALGORITMO BÁSICO: ");
+            System.out.print("TEMPO DE EXECUCAO DO ALGORITMO BASICO: ");
             System.out.printf("%.1f\n",Tempo);
             }  
         }
@@ -143,7 +143,7 @@ class Main{
             System.out.println("Calculando Determinante...");
             System.out.println();
             if((Mat.retorneOrdem() == 13) || (Mat.retorneOrdem() == 15)){
-                System.out.println("|LEMBRE-SE:A paciência é a arte de esperar|");
+                System.out.println("|LEMBRE-SE:A paciencia eh a arte de esperar|");
                 System.out.println();
             }
             System.out.println();            
@@ -167,7 +167,7 @@ class Main{
             System.out.println("                  ALGORITMO EXTRA OTIMIZADO                               ");   
              System.out.println("=============================================================================="); 
             if(Mat.retorneOrdem() == 15){
-                System.out.println("|LEMBRE-SE:A paciência é a arte de esperar|");
+                System.out.println("|LEMBRE-SE:A paciencia eh a arte de esperar|");
                 System.out.println();
             }	    
             System.out.println();            
@@ -176,7 +176,7 @@ class Main{
 	        System.out.println(Mat3.DetVersaoFerrari());
 	        endTime = System.nanoTime();
 	        Tempo = endTime - startTime;
-	        System.out.print("TEMPO DE EXECUÇÃO DO ALGORITMO EXTRA OTIMIZADO(TEOREMA DE CHIO): ");       
+	        System.out.print("TEMPO DE EXECUCAO DO ALGORITMO EXTRA OTIMIZADO(TEOREMA DE CHIO): ");       
             System.out.printf("%.1f\n",Tempo);
             System.out.println("=============================================================================="); 
             } 

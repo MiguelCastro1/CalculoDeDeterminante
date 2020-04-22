@@ -87,7 +87,7 @@ class Matriz {
     public void copiaParaMatriz(Matriz MatA) {
         int i, j, num;
 
-        for (i = 0; i < this.Linhas; i++) {
+        for (i = 0; i < M.Linhas; i++) {
             for (j = 0; j < this.Colunas; j++) {
                 num = this.getElemento(i, j);
                 MatA.setElemento(i, j, num);
@@ -142,8 +142,8 @@ class Matriz {
         DiS = DiS + (Mat.getElemento(2, 1) * Mat.getElemento(1, 2) * Mat.getElemento(0, 0));
         DiS = DiS + (Mat.getElemento(2, 2) * Mat.getElemento(1, 0) * Mat.getElemento(0, 1));
             
-	Det = (DiP - DiS);
-	return (int) Det;
+	    Det = (DiP - DiS);
+	    return (int) Det;
 	
 	}
     private int calculaSinal(int indiceL, int indiceC) {
@@ -188,9 +188,9 @@ class Matriz {
         totZeros = 0;
         MaisZeros = 0;
 
-        for (i = 0; i < this.Linhas; i++) {
+        for (i = 0; i < Mat.Linhas; i++) {
             totZeros = 0;
-            for (j = 0; j < this.Colunas; j++) {
+            for (j = 0; j < Mat.Colunas; j++) {
                 if (Mat.getElemento(j, i) == 0) {
                     totZeros++;
                 }
@@ -210,9 +210,9 @@ class Matriz {
         totZeros = 0;
         MaisZeros = 0;
 
-        for (i = 0; i < this.Linhas; i++) {
+        for (i = 0; i < Mat.Linhas; i++) {
             totZeros = 0;
-            for (j = 0; j < this.Colunas; j++) {
+            for (j = 0; j < Mat.Colunas; j++) {
                 if (Mat.getElemento(i, j) == 0) {
                     totZeros++;
                 }

@@ -436,79 +436,7 @@ class Matriz {
     	//System.out.println();
     }
     
-   
-
-     private long detOrdemN(Matriz mat) {
-        int sinal, cofator, contC;
-        long det, detTemp, resposta;
-        Matriz matmenor;
-
-        resposta = 0;
-        for (contC = 0; contC < mat.getnumColunas(); contC++) {
-            if (mat.getElemento(0, contC) == 0) {
-                resposta = resposta + 0;
-                continue;
-            }else{
-                cofator = mat.getElemento(0, contC);
-                sinal = this.calculaSinal(0, contC);
-            }
-           
-            matmenor = new Matriz(mat.getnumLinhas() - 1, mat.getnumLinhas() - 1);
-            this.copiaMatrizMaiorParaMenor(mat, matmenor, 0, contC);
-            detTemp = matmenor.determinante();
-            resposta = resposta + (cofator * sinal * detTemp);
-        }
-        return (resposta);
-    }
-    
     private long detOrdemN(Matriz mat) {
-        int sinal, cofator,contC;
-        int  ColMaisZeros, LinMaisZeros;
-        long det, detTemp, resposta;
-        boolean   horizontal;
-        Matriz matmenor;
-
-        resposta = 0;
-        
-        //procura coluna ou linha com mais zeros
-        ColMaisZeros = mat.ColunaMaisZeros(mat);
-        LinMaisZeros = mat.LinhaMaisZeros(mat);
-        horizontal = (ColMaisZeros > LinMaisZeros) ? false: true;
-        
-        for (contC = 0; contC < mat.getnumColunas(); contC++) {
-            if (horizontal) {
-                if (mat.getElemento(LinMaisZeros, contC) == 0) {
-                    resposta = resposta + 0;
-                    continue;
-                }else{
-                    cofator = mat.getElemento(LinMaisZeros , contC);
-                    sinal = this.calculaSinal(LinMaisZeros , contC);
-                }
-            }else {
-                if (mat.getElemento(contC, ColMaisZeros) == 0) {
-                    resposta = resposta + 0;
-                    continue;
-                }else{
-                    cofator = mat.getElemento(contC, ColMaisZeros);
-                    sinal = this.calculaSinal(contC, ColMaisZeros);
-                }
-            }
-           
-            matmenor = new Matriz(mat.getnumLinhas() - 1,mat.getnumColunas() - 1);
-
-            if(horizontal){
-                this.copiaMatrizMaiorParaMenor(mat, matmenor, LinMaisZeros, contC);
-            }else{
-                this.copiaMatrizMaiorParaMenor(mat, matmenor, contC, ColMaisZeros);
-            }
-
-            detTemp = matmenor.determinante();
-            resposta = resposta + (cofator * sinal * detTemp);
-        }
-        return (resposta);
-    }
-
-     private long detOrdemN(Matriz mat) {
         int sinal, cofator,  contC,numC;
         int  LinMaisZeros, ColMaisZeros, TemUmLinha, UmColuna;
         long det, detTemp, resposta;
@@ -591,6 +519,7 @@ class Matriz {
 
         return (resposta);
     }
+
     
     public long determinante() {
         int ordem;
