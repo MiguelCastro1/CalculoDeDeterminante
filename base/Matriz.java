@@ -1,6 +1,7 @@
-//package CALCULODEDETERMINANTE;
 import java.util.Random;
 import java.util.Scanner;
+
+//Implementacao base de um calculo de determinante
 class Matriz {
 
     private int [][] Matriz;
