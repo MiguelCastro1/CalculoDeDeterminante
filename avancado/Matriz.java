@@ -459,7 +459,7 @@ class Matriz {
 		
         //Se houver 1 na matriz - Quio
         if(TemUmLinha != -1){
-            System.out.println("TemUm");
+            //System.out.println("TemUm");
             UmColuna = mat.UmNaColuna(mat, TemUmLinha);
             matmenor = new Matriz(mat.Linhas - 1, mat.Colunas - 1);
 

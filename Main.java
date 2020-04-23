@@ -1,5 +1,5 @@
 import java.util.Scanner;
-class Main{
+class main{
 	public static void main(String[] args){
         int Random,tamanho,i,j;
         int resposta1,resposta2;
@@ -12,35 +12,12 @@ class Main{
         
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=CALCULO DETERMINANTE=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 
-        System.out.println("                             -MENU DE COMANDO-                ");
-        System.out.println();        
-        System.out.println("PASSO 1:DETERMINE O TAMANHO DA MATRIZ");
-        System.out.println();        
-        System.out.println(" ->Digite 1:GERAR UMA MATRIZ DE ORDEM QUADRADA");
-        System.out.println(" ->Digite 2:GERAR UMA MATRIZ DE ORDEM NAO QUADRADA");
+        System.out.println("                             -MENU DE COMANDO-               \n\n");
+        System.out.print("INFORME A ORDEM DA MATRIZ: ");
+        tamanho = ler.nextInt();
+        Mat = new Matriz(tamanho);
         
-        do{
-            System.out.print("   ");
-            resposta1 = ler.nextInt();
-            if((resposta1 ==1)  || (resposta1 == 2)){
-                saida = false;       
-            }else{           
-            System.out.println("COMANDO INVALIDO");
-            System.out.println("Por favor,Digite novamente");
-            }
-        }while(saida);
-        System.out.println();
-        if(resposta1 == 1){
-            System.out.print("INFORME A ORDEM DA MATRIZ: ");
-            tamanho = ler.nextInt();
-            Mat = new Matriz(tamanho);
-        }else{
-            System.out.print("INFORME O NUMERO DE LINHAS: ");
-            i = ler.nextInt();
-            System.out.print("INFORME O NUMERO DE COLUNAS: ");
-            j = ler.nextInt();
-            Mat = new Matriz(i,j);
-        }
+
         System.out.println();
         System.out.println("                  -MATRIZ CRIADA! -                   ");
         System.out.println();
@@ -49,8 +26,9 @@ class Main{
         System.out.println("->DIGITE 1:PREENCHER A MATRIZ COM UM UNICO VALOR");
         System.out.println("->DIGITE 2:PREENCHER A MATRIZ COM VALORES ALEATORIOS(0 A 20)");
         System.out.println("->DIGITE 3:PREENCHER A MATRIZ COM 0 ATE UM NUMERO INFORMADO");
-        System.out.println("->DIGITE ,4:PREENCHER A MATRIZ MANUALMENTE");
+        System.out.println("->DIGITE 4:PREENCHER A MATRIZ MANUALMENTE");
         saida = true;
+
         do{
             System.out.print("  ");
             resposta2 = ler.nextInt();
@@ -76,7 +54,13 @@ class Main{
             Mat.iniciaRandom(Random);
         }
         if(resposta2 ==4){
-            Mat.IniciarManualmente();
+            for(i=0;i<Mat.getnumLinhas();i++){
+                for(j = 0;j<Mat.getnumColunas();j++){
+                    int elem = ler.nextInt();
+                    Mat.setElemento(i,j,elem);
+                }
+            }
+            //Mat.IniciarManualmente();
         }
 
         System.out.println();
@@ -121,7 +105,7 @@ class Main{
         	    
             System.out.print("RESULTADO DO DETERMINANTE: ");
 	        startTime = System.nanoTime();
-	        System.out.println(Mat1.DetVersaoFusca());
+	        System.out.println(Mat1.determinante(1));
 	        endTime = System.nanoTime();
 	        Tempo = endTime - startTime;
             System.out.print("TEMPO DE EXECUCAO DO ALGORITMO BASICO: ");
@@ -149,7 +133,7 @@ class Main{
             System.out.println();            
             System.out.print("RESULTADO DO DETERMINANTE: ");
 	        startTime = System.nanoTime();
-	        System.out.println(Mat2.DetVersaoPalio());
+	        System.out.println(Mat2.determinante(2));
 	        endTime = System.nanoTime();
 	        Tempo = endTime - startTime;
             System.out.print("TEMPO DE EXECUÇÃO DO ALGORITMO OTIMIZADO: ");       
@@ -173,7 +157,7 @@ class Main{
             System.out.println();            
             System.out.print("RESULTADO DO DETERMINANTE: ");
             startTime = System.nanoTime();
-	        System.out.println(Mat3.DetVersaoFerrari());
+	        System.out.println(Mat3.determinante(3));
 	        endTime = System.nanoTime();
 	        Tempo = endTime - startTime;
 	        System.out.print("TEMPO DE EXECUCAO DO ALGORITMO EXTRA OTIMIZADO(TEOREMA DE CHIO): ");       

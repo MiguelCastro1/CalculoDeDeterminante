@@ -275,32 +275,34 @@ class Matriz {
     }
     
    	private boolean LinhaProporcional(Matriz mat){
-   		int i, j, numL, numC, num1, num2, resto;
-    	boolean Nula;
+   		int i, j, k,numL, numC, num1, num2, resto;
+    	boolean Nula = true;
 
-   		for(i=0; i<mat.Linhas-1; i++){
-            Nula = true;
-   			for(j=0; j<mat.Colunas; j++){
-   				num1 = mat.getElemento(i, j);
-   				num2 = mat.getElemento((i+1), j);
+   		for(k=0; k<mat.Linhas-1; k++){
+            for(i=k+1;i<mat.Linhas;i++){
+                Nula = true;
+                for(j=0; j<mat.Colunas; j++){
+                    num1 = mat.getElemento(k, j);
+                    num2 = mat.getElemento(i, j);
 
-   				if((num1 !=0) && (num2 !=0)){
-   					if((num1 % num2) == 0){
-   						continue;
-   					}else{
-   						Nula = false;
-   						break;
-   					}  					
-   				}else{
-   					if((num1== 0) && (num2 == 0)){
-   						continue;
-   					}else{
-   						Nula = false;
-   						break;
-   					}	
-   				}										
-   			}
+                    if((num1 !=0) && (num2 !=0)){
+                        if((num1 % num2) == 0){
+                            continue;
+                        }else{
+                            Nula = false;
+                            break;
+                        }  					
+                    }else{
+                        if((num1== 0) && (num2 == 0)){
+                            continue;
+                        }else{
+                            Nula = false;
+                            break;
+                        }	
+                    }										
+                }
             if(Nula) return true;
+            }
    		}
    		//System.out.println();
    		//System.out.print("LinhaProporcional: ");
@@ -309,37 +311,39 @@ class Matriz {
    	}
    	
    	private boolean ColunaProporcional(Matriz mat){
-   		int i, j, num1, num2, resto;
+   		int i, j, k,numL, numC, num1, num2, resto;
     	boolean Nula = true;
 
-   		for(i=0; i<mat.Linhas-1; i++){
-            Nula = true;
-   			for(j=0; j<mat.Colunas; j++){
-   				num1 = mat.getElemento(j, i);
-   				num2 = mat.getElemento(j, (i+1));
+   		for(k=0; k<mat.Colunas-1; k++){
+            for(i=k+1;i<mat.Colunas;i++){
+                Nula = true;
+                for(j=0; j<mat.Linhas; j++){
+                    num1 = mat.getElemento(j, k);
+                    num2 = mat.getElemento(j, i);
 
-   				if((num1 !=0) && (num2 !=0)){
-   					if((num1 % num2) == 0){
-   						continue;
-   					}else{
-   						Nula = false;
-   						break;
-   					}
-   				}else{
-   					if((num1== 0) && (num2 == 0)){
-   						continue;
-   					}else{
-   						Nula = false;
-   						break;
-   					}	
-   				}										
-   			}
+                    if((num1 !=0) && (num2 !=0)){
+                        if((num1 % num2) == 0){
+                            continue;
+                        }else{
+                            Nula = false;
+                            break;
+                        }  					
+                    }else{
+                        if((num1== 0) && (num2 == 0)){
+                            continue;
+                        }else{
+                            Nula = false;
+                            break;
+                        }	
+                    }										
+                }
             if(Nula) return true;
+            }
    		}
    		//System.out.println();
-   		//System.out.print("ColunaProporcional: ");
+   		//System.out.print("LinhaProporcional: ");
    		//System.out.println(Nula);
-   		return Nula;	
+   		return false;
    	}
     
     
@@ -436,9 +440,7 @@ class Matriz {
     	//System.out.println();
     }
     
-   
-
-     private long detOrdemN(Matriz mat) {
+     private long detOrdemN_Base(Matriz mat,int tipo) {
         int sinal, cofator, contC;
         long det, detTemp, resposta;
         Matriz matmenor;
@@ -455,13 +457,13 @@ class Matriz {
            
             matmenor = new Matriz(mat.getnumLinhas() - 1, mat.getnumLinhas() - 1);
             this.copiaMatrizMaiorParaMenor(mat, matmenor, 0, contC);
-            detTemp = matmenor.determinante();
+            detTemp = matmenor.determinante(tipo);
             resposta = resposta + (cofator * sinal * detTemp);
         }
         return (resposta);
     }
     
-    private long detOrdemN(Matriz mat) {
+    private long detOrdemN_Simples(Matriz mat,int tipo) {
         int sinal, cofator,contC;
         int  ColMaisZeros, LinMaisZeros;
         long det, detTemp, resposta;
@@ -502,13 +504,13 @@ class Matriz {
                 this.copiaMatrizMaiorParaMenor(mat, matmenor, contC, ColMaisZeros);
             }
 
-            detTemp = matmenor.determinante();
+            detTemp = matmenor.determinante(tipo);
             resposta = resposta + (cofator * sinal * detTemp);
         }
         return (resposta);
     }
 
-     private long detOrdemN(Matriz mat) {
+     private long detOrdemN_Quio(Matriz mat,int tipo) {
         int sinal, cofator,  contC,numC;
         int  LinMaisZeros, ColMaisZeros, TemUmLinha, UmColuna;
         long det, detTemp, resposta;
@@ -529,9 +531,9 @@ class Matriz {
 			return resposta;
 		}
 		
-        //Se houver 1 na matriz - Quio
+        //Se houver 1 na matriz - Chio
         if(TemUmLinha != -1){
-            System.out.println("TemUm");
+            //System.out.println("TemUm");
             UmColuna = mat.UmNaColuna(mat, TemUmLinha);
             matmenor = new Matriz(mat.Linhas - 1, mat.Colunas - 1);
 
@@ -541,7 +543,7 @@ class Matriz {
             }
             
             this.copiaMatrizMaiorParaMenorQuio(mat, matmenor);
-            det = matmenor.determinante();
+            det = matmenor.determinante(tipo);
 
             if(Sinal){
             	resposta = -1 * det; 
@@ -585,14 +587,14 @@ class Matriz {
                 this.copiaMatrizMaiorParaMenor(mat, matmenor, contC, ColMaisZeros);
             }
 
-            detTemp = matmenor.determinante();
+            detTemp = matmenor.determinante(tipo);
             resposta = resposta + (cofator * sinal * detTemp);
         }
 
         return (resposta);
     }
     
-    public long determinante() {
+    public long determinante(int tipo) {
         int ordem;
         long det;
 
@@ -608,10 +610,18 @@ class Matriz {
                 det = this.detOrdem2(this);;
                 break;
             case 3:
-                det = this.detOrdem3(this);;
+                if(tipo != 1)
+                    det = this.detOrdem3(this);
+                else
+                    det = this.detOrdemN_Base(this,tipo);
                 break;
             default:
-                det = this.detOrdemN(this);;
+                if(tipo == 1)
+                    det = this.detOrdemN_Base(this,tipo);
+                else if(tipo == 2)
+                    det = this.detOrdemN_Simples(this,tipo);
+                else if(tipo == 3)
+                    det = this.detOrdemN_Quio(this,tipo);
                 break;
             }
 
